@@ -1,3 +1,4 @@
+import os
 #You don't have to use jsonify anymore
 from flask import Flask
 from flask_restful import Api
@@ -14,7 +15,7 @@ from resources.store import Store
 from resources.stores import Stores
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'jose'
 api = Api(app)
