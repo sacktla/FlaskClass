@@ -21,7 +21,7 @@ class UserRegister(Resource):
         data = UserRegister.parser.parse_args()
 
         if not UserModel.find_by_username(data['username']):
-            user = UserModel(data['Username'], data['password'])
+            user = UserModel(data['username'], data['password'])
             user.save_to_db()
             return {"message": "User {} created successfully.".format(data['username'])}, 201
 
